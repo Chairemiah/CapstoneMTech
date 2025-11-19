@@ -5,11 +5,30 @@ import { browser } from '@wdio/globals'
 * that is shared across all page objects
 */
 export default class Base {
-    /**
-    * Opens a sub page of the page
-    * @param path path of the sub page (e.g. /path/to/page.html)
-    */
+    
+//selectors
+
+    get homePage () {
+        return $('//*[@href=https://gcbcomputers.com/');
+    }
+
+
+
+
+
+
+    //functions
+
+    async homePageVerify () {
+        await browser.url('https://gcbcomputers.com/')
+        await expect(browser).toHaveUrl('https://gcbcomputers.com/')
+    }
+
+
     open (path) {
         return browser.url('https://gcbcomputers.com/')
     }
+
+    
+
 }
