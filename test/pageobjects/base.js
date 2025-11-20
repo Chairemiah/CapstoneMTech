@@ -12,8 +12,13 @@ export default class Base {
         return $('//*[@href=https://gcbcomputers.com/');
     }
 
-
-
+    get homeBtnHomePageClass () {
+        return $('.current-menu-item');
+    }
+    
+    get homeBtnClass () {
+        return $('.fa fa-home')
+    }
 
 
 
@@ -22,6 +27,20 @@ export default class Base {
     async homePageVerify () {
         await browser.url('https://gcbcomputers.com/')
         await expect(browser).toHaveUrl('https://gcbcomputers.com/')
+    }
+
+    async homeBtnHomePage () {
+        await this.homeBtnHomePageClass.click();
+    }
+
+    async homeBtn () {
+        await this.homeBtnClass.click();
+    }
+
+    async windowsSystemsHover () {
+        await $('a*=Windows Systems');
+        await this.windowsSystemsID.moveTo();
+        await browser.pause(500);
     }
 
 
