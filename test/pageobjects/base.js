@@ -43,6 +43,8 @@ export default class Base {
         await browser.pause(500);
     }
 
+    
+
 
     open (path) {
         return browser.url('https://gcbcomputers.com/')

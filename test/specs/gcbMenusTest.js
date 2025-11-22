@@ -5,17 +5,21 @@ import GCBMenu from '../pageobjects/gcbMenus.js'
 
 
 describe('GCB Computers Test', () => {
-    it('Will Test Selected Areas of GCB Website', async () => {
+    it('Testing of GCB Website - Dropdown and Menus', async () => {
         await GCBMenu.open();
         await GCBMenu.homeBtnHomePage();
         await GCBMenu.homePageVerify();
-        await GCBMenu.windowsSystems();
-        await GCBMenu.desktops();
-        await GCBMenu.gaming();
-        await GCBMenu.laptops();
-        await GCBMenu.convertablesTablets();
-        await GCBMenu.MicroMini();
-       
+        await GCBMenu.allWindowsSystemsMenu();
+        await GCBMenu.linuxOS();
+        await GCBMenu.allPricingMenu();
+        await GCBMenu.accessories();
+        await GCBMenu.repairs();
+        await GCBMenu.allOurCompanyMenu();
+        await GCBMenu.open();
+
+        
+
+
     })
 })
 
