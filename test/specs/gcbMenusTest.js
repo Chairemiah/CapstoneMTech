@@ -9,13 +9,19 @@ describe('GCB Computers Test', () => {
         await GCBMenu.open();
         await GCBMenu.homeBtnHomePage();
         await GCBMenu.homePageVerify();
-        await GCBMenu.allWindowsSystemsMenu();
-        await GCBMenu.linuxOS();
-        await GCBMenu.allPricingMenu();
-        await GCBMenu.accessories();
-        await GCBMenu.repairs();
-        await GCBMenu.allOurCompanyMenu();
-        await GCBMenu.open();
+        // await GCBMenu.allWindowsSystemsMenu();
+        // await GCBMenu.linuxOS();
+        // await GCBMenu.allPricingMenu();
+        // await GCBMenu.accessories();
+        // await GCBMenu.repairs();
+        // await GCBMenu.allOurCompanyMenu();
+        // await GCBMenu.open();
+        // await GCBMenu.recycling();
+        // await GCBMenu.gcbLaytonHome();
+        // await GCBMenu.gcbServers();
+        // await GCBMenu.gcbLaytonHome();
+        await GCBMenu.gcbServers();
+        await GCBMenu.gcbServersHomeBtn();
 
         
 
