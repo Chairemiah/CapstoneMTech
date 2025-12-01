@@ -22,7 +22,7 @@ export default class Base {
 
 
 
-    //functions
+//functions
 
     async homePageVerify () {
         await browser.url('https://gcbcomputers.com/')
@@ -46,7 +46,7 @@ export default class Base {
     
 
 
-    open (path) {
+    openGCB (path) {
         return browser.url('https://gcbcomputers.com/')
     }
 

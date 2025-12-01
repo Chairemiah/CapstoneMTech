@@ -114,7 +114,7 @@ class GCBMenu extends Base {
     }
 
 
-    //GCB Servers home
+    //GCB Servers Webpage
     get gcbServersHomeBtnID () {
         return $('.current-menu-item')
     }
@@ -123,7 +123,38 @@ class GCBMenu extends Base {
         return $('#menu-item-13148')
     }
 
+    get networkingSolutionsID () {
+        return $('#menu-item-13147')
+    }
 
+    get toolsID () {
+        return $('#menu-item-18023')
+    }
+
+    //Other Items Dropdown
+    get otherItemsID () {
+        return $('#menu-item-13143')
+    }
+
+    get partsAccessoriesID () {
+        return $('#menu-item-13144')
+    }
+
+    get drivesDevicesID () {
+        return $('#menu-item-13145')
+    }
+
+    get computersID () {
+        return $('#menu-item-13146')
+    }
+
+    get serversRepairsID () {
+        return $('#menu-item-13142')
+    }
+
+    get serversRecyclingID () {
+        return $('#menu-item-13375')
+    }
 
 
 
@@ -246,6 +277,7 @@ class GCBMenu extends Base {
         await expect(browser).toHaveUrl('https://gcbcomputers.com/computer/computers-over-500/');
     }
 
+    //ALL Pricing Functions in one
     async allPricingMenu () {
         await this.pricing();
         await this.oneOrLess();
@@ -289,10 +321,12 @@ class GCBMenu extends Base {
     async warranty () {
         await this.ourCompanyHover();
         await this.warrantyID.click();
+        await browser.pause(500);
         await expect(browser).toHaveUrl('https://gcbcomputers.com/wp-content/uploads/2025/02/Warranty.pdf');
 
     }
 
+    //ALL Our Company Functions in one
     async allOurCompanyMenu () {
         await this.ourCompany();
         await this.faq();
@@ -305,9 +339,31 @@ class GCBMenu extends Base {
     }
 
     async gcbServers () {
-        await this.gcbServersID.click()
+        await this.gcbServersID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/');
     }
+
+
+
+    //ALL GCB MENUS IN ONE 
+    async allGCBMenuItems () {
+        await this.openGCB();
+        await this.homeBtnHomePage();
+        await this.homePageVerify();
+        await this.allWindowsSystemsMenu();
+        await this.linuxOS();
+        await this.allPricingMenu();
+        await this.accessories();
+        await this.repairs();
+        await this.allOurCompanyMenu();
+        await this.openGCB();
+        await this.recycling();
+        await this.gcbLaytonHome();
+        await this.gcbServers();
+    }
+
+
+
 
     async gcbLaytonHome () {
         await this.gcbLaytonHomeID.click();
@@ -317,6 +373,78 @@ class GCBMenu extends Base {
         // await $('a*=current-menu-item')
         await this.gcbServersHomeBtnID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/');
+    }
+
+    async availableServers () {
+        await this.availableServersID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/available-servers/');
+    }
+
+    async networkingSolutions () {
+        await this.networkingSolutionsID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/networking-solutions/');
+    }
+
+    async tools () {
+        await this.toolsID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/cameras-tools/');
+    }
+    
+    //Other Items Hover Function
+    async otherItemsHover () {
+        await $('a*=Other Items');
+        await this.otherItemsID.moveTo();
+        await browser.pause(500);
+    }
+
+    async otherItems () {
+        await this.otherItemsID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/')
+    }
+
+    async partsAccessories () {
+        await this.otherItemsHover();
+        await this.partsAccessoriesID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/parts-accessories/')
+    }
+
+    async drivesDevices () {
+        await this.otherItemsHover();
+        await this.drivesDevicesID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/storage-drives-devices/')
+    }
+
+    async computers () {
+        await this.otherItemsHover();
+        await this.computersID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/storage-solutions-other-items/')
+    }
+
+    async allOtherItems () {
+        await this.otherItems();
+        await this.partsAccessories();
+        await this.drivesDevices();
+        await this.computers();
+    }
+
+    async serversRepairs () {
+        await this.serversRepairsID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/repairs/')
+    }
+
+    async serversRecycling () {
+        await this.serversRecyclingID.click();
+        await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/recycling-program/')
+    }
+
+    async allServersMenus () {
+        await this.gcbServersHomeBtn();
+        await this.availableServers();
+        await this.networkingSolutions();
+        await this.tools();
+        await this.allOtherItems();
+        await this.serversRepairs();
+        await this.serversRecycling();
     }
 
 }
