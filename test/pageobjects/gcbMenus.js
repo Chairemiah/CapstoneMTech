@@ -323,7 +323,6 @@ class GCBMenu extends Base {
         await this.warrantyID.click();
         await browser.pause(1000);
         await expect(browser).toHaveUrl('https://gcbcomputers.com/wp-content/uploads/2025/02/Warranty.pdf');
-
     }
 
     //ALL Our Company Functions in one
@@ -356,7 +355,8 @@ class GCBMenu extends Base {
         await this.accessories();
         await this.repairs();
         await this.allOurCompanyMenu();
-        await this.openGCB();
+        await browser.back();
+        //await this.openGCB();
         await this.recycling();
         await this.gcbLaytonHome();
         await this.gcbServers();
