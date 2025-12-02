@@ -178,7 +178,7 @@ class GCBMenu extends Base {
     async windowsSystemsHover () {
         await $('a*=Windows Systems');
         await this.windowsSystemsID.moveTo();
-        await browser.pause(500);
+        await browser.pause(1000);
     }
 
     //Windows Dropdown
@@ -239,7 +239,7 @@ class GCBMenu extends Base {
      async pricingHover () {
         await $('a*=Pricing');
         await this.pricingID.moveTo();
-        await browser.pause(500);
+        await browser.pause(1000);
     }
     
     async pricing () {
@@ -303,7 +303,7 @@ class GCBMenu extends Base {
     async ourCompanyHover () {
         await $('a*=Our Company');
         await this.ourCompanyID.moveTo();
-        await browser.pause(500);
+        await browser.pause(1000);
     }
     
     async ourCompany () {
@@ -321,7 +321,7 @@ class GCBMenu extends Base {
     async warranty () {
         await this.ourCompanyHover();
         await this.warrantyID.click();
-        await browser.pause(500);
+        await browser.pause(1000);
         await expect(browser).toHaveUrl('https://gcbcomputers.com/wp-content/uploads/2025/02/Warranty.pdf');
 
     }
@@ -394,7 +394,7 @@ class GCBMenu extends Base {
     async otherItemsHover () {
         await $('a*=Other Items');
         await this.otherItemsID.moveTo();
-        await browser.pause(500);
+        await browser.pause(1000);
     }
 
     async otherItems () {
