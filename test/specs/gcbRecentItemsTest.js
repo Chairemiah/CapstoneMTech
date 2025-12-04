@@ -1,5 +1,4 @@
 import { expect } from '@wdio/globals'
-import Base from '../pageobjects/base.js'
 import GCBRecentItems from '../pageobjects/gcbRecentItems.js'
 
 

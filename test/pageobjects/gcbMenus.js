@@ -119,6 +119,10 @@ class GCBMenu extends Base {
         return $('.current-menu-item')
     }
 
+    get gcbServersFromLaytonID () {
+        return $('.menu-item-19927')
+    }
+
     get availableServersID () {
         return $('#menu-item-13148')
     }
@@ -161,9 +165,6 @@ class GCBMenu extends Base {
 
 //functions
 
-    // async homeBtn () {
-    //     await expect(this.homeBtnClass).toExist();
-    // }
 
     async homeBtnHomePage () {
         await this.homeBtnHomePageClass.click();
@@ -178,7 +179,7 @@ class GCBMenu extends Base {
     async windowsSystemsHover () {
         await $('a*=Windows Systems');
         await this.windowsSystemsID.moveTo();
-        await browser.pause(1000);
+        await this.laptopsID.waitForExist({ timeout: 2000 });
     }
 
     //Windows Dropdown
@@ -239,7 +240,7 @@ class GCBMenu extends Base {
      async pricingHover () {
         await $('a*=Pricing');
         await this.pricingID.moveTo();
-        await browser.pause(1000);
+        await this.overFiveID.waitForExist({ timeout: 2000 });
     }
     
     async pricing () {
@@ -303,7 +304,8 @@ class GCBMenu extends Base {
     async ourCompanyHover () {
         await $('a*=Our Company');
         await this.ourCompanyID.moveTo();
-        await browser.pause(1000);
+        // await browser.pause(1000);
+        await this.warrantyID.waitForDisplayed({timeout:2000})
     }
     
     async ourCompany () {
@@ -321,7 +323,7 @@ class GCBMenu extends Base {
     async warranty () {
         await this.ourCompanyHover();
         await this.warrantyID.click();
-        await browser.pause(1000);
+        // await browser.pause(1000);
         await expect(browser).toHaveUrl('https://gcbcomputers.com/wp-content/uploads/2025/02/Warranty.pdf');
     }
 
@@ -356,7 +358,6 @@ class GCBMenu extends Base {
         await this.repairs();
         await this.allOurCompanyMenu();
         await browser.back();
-        //await this.openGCB();
         await this.recycling();
         await this.gcbLaytonHome();
         await this.gcbServers();
@@ -364,13 +365,15 @@ class GCBMenu extends Base {
 
 
 
-
     async gcbLaytonHome () {
         await this.gcbLaytonHomeID.click();
     }
 
+    async gcbServersFromLayton () {
+        await this.gcbServersFromLaytonID.click();
+    }
+
     async gcbServersHomeBtn () {
-        // await $('a*=current-menu-item')
         await this.gcbServersHomeBtnID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/');
     }
@@ -394,7 +397,8 @@ class GCBMenu extends Base {
     async otherItemsHover () {
         await $('a*=Other Items');
         await this.otherItemsID.moveTo();
-        await browser.pause(1000);
+        // await browser.pause(1000);
+        await this.computersID.waitForExist({timeout:2000})
     }
 
     async otherItems () {

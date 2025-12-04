@@ -1,5 +1,4 @@
 // import { expect } from '@wdio/globals'
-// import Base from '../pageobjects/base.js'
 // import GCBMenu from '../pageobjects/gcbMenus.js'
 // import GoogleMapsWidget from '../pageobjects/gcbMaps.js'
 
