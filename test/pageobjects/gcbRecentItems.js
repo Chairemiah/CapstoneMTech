@@ -11,18 +11,21 @@ class GCBRecentItems extends Base {
         return $$('.trending-content a[href*="gcbcomputers.com"]');
     }
 
-    async trendingWrapper () {
-        await this.trendingWrapperID;
-    }
 
     async recentItems () {
+        // await this.trendingWrapperID;
         await this.recentItemsID.then(async (links) => {
     for (let link of links) {
         await browser.url(await link.getAttribute('href'))
-        await browser.pause(1000)
+        // await browser.pause(1000)
         await browser.back()
-        await browser.pause(1000)
+        expect([
+                'https://gcbcomputers.com/',
+                'https://servers.gcbcomputers.com/'
+            ]).toHaveUrl(await browser.getUrl());
     }
+
+
 
 })
 

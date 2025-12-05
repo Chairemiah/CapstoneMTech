@@ -6,157 +6,157 @@ import Base from './base.js';
 class GCBMenu extends Base {
   
     //Windows Systems Dropdown Getters
-    get homeBtnHomePageClass () {
+    get homeBtnHomePageClass() {
         return $('.current-menu-item');
     }
 
-    get homeBtnClass () {
+    get homeBtnClass() {
         return $('.fa fa-home');
     }
    
-    get windowsSystemsID () {
+    get windowsSystemsID() {
         return $('#menu-item-33655');
     }
 
-    get windowsSystemsUrl () {
+    get windowsSystemsUrl() {
         return $('https://gcbcomputers.com/windows-systems/');
     }
 
-    get desktopsID () {
+    get desktopsID() {
         return $('#menu-item-19533');
     }
 
-    get gamingID () {
+    get gamingID() {
         return $('#menu-item-19535');
     }
 
-    get laptopsID () {
+    get laptopsID() {
         return $('#menu-item-19534');
     }
     
-    get convertablesTabletsID () {
+    get convertablesTabletsID() {
         return $('#menu-item-41485');
     }
 
-    get microMiniID () {
+    get microMiniID() {
         return $('#menu-item-37925');
     }
     
 
     //Linux OS
-    get linuxOSID () {
+    get linuxOSID() {
         return $('#menu-item-45254');
     }
 
     //Pricing Dropdown Getters
-    get pricingID () {
+    get pricingID() {
         return $('#menu-item-20481');
     }
 
-    get oneOrLessID () {
+    get oneOrLessID() {
         return $('#menu-item-20482');
     }
 
-    get twoOrLessID () {
+    get twoOrLessID() {
         return $('#menu-item-20484');
     }
 
-    get oneToThreeID () {
+    get oneToThreeID() {
         return $('#menu-item-20483');
     }
     
-    get twoToFiveID () {
+    get twoToFiveID() {
         return $('#menu-item-20485');
     }
 
-    get overFiveID () {
+    get overFiveID() {
         return $('#menu-item-20486');
     }
 
     //Accessories
-    get accessoriesID () {
+    get accessoriesID() {
         return $('#menu-item-321');
     }
 
     //Repairs
-    get repairsID () {
+    get repairsID() {
         return $('#menu-item-21');
     }
 
     //Our Company
-    get ourCompanyID () {
+    get ourCompanyID() {
         return $('#menu-item-20474');
     }
     
     //FAQ
-    get faqID () {
+    get faqID() {
         return $('#menu-item-20487');
     }
 
-    get warrantyID () {
+    get warrantyID() {
         return $('#menu-item-33410');
     }
 
-    get recyclingID () {
+    get recyclingID() {
         return $('#menu-item-41680');
     }
 
-    get gcbServersID () {
+    get gcbServersID() {
         return $('#menu-item-19927');
     }
 
-    get recentItemsID () {
+    get recentItemsID() {
         return $('.trending-wrapper')
     }
 
-    get gcbLaytonHomeID () {
+    get gcbLaytonHomeID() {
         return $('#menu-item-4361')
     }
 
 
     //GCB Servers Webpage
-    get gcbServersHomeBtnID () {
+    get gcbServersHomeBtnID() {
         return $('.current-menu-item')
     }
 
-    get gcbServersFromLaytonID () {
+    get gcbServersFromLaytonID() {
         return $('.menu-item-19927')
     }
 
-    get availableServersID () {
+    get availableServersID() {
         return $('#menu-item-13148')
     }
 
-    get networkingSolutionsID () {
+    get networkingSolutionsID() {
         return $('#menu-item-13147')
     }
 
-    get toolsID () {
+    get toolsID() {
         return $('#menu-item-18023')
     }
 
     //Other Items Dropdown
-    get otherItemsID () {
+    get otherItemsID() {
         return $('#menu-item-13143')
     }
 
-    get partsAccessoriesID () {
+    get partsAccessoriesID() {
         return $('#menu-item-13144')
     }
 
-    get drivesDevicesID () {
+    get drivesDevicesID() {
         return $('#menu-item-13145')
     }
 
-    get computersID () {
+    get computersID() {
         return $('#menu-item-13146')
     }
 
-    get serversRepairsID () {
+    get serversRepairsID() {
         return $('#menu-item-13142')
     }
 
-    get serversRecyclingID () {
+    get serversRecyclingID() {
         return $('#menu-item-13375')
     }
 
@@ -166,61 +166,61 @@ class GCBMenu extends Base {
 //functions
 
 
-    async homeBtnHomePage () {
+    async homeBtnHomePage() {
         await this.homeBtnHomePageClass.click();
     }
 
-    async homeBtn () {
+    async homeBtn() {
         await this.homeBtnClass.click();
     }
 
 
     //hover function 
-    async windowsSystemsHover () {
+    async windowsSystemsHover() {
         await $('a*=Windows Systems');
         await this.windowsSystemsID.moveTo();
         await this.laptopsID.waitForExist({ timeout: 2000 });
     }
 
     //Windows Dropdown
-    async windowsSystems () {
+    async windowsSystems() {
         await this.windowsSystemsID.click();
         await browser.url('https://gcbcomputers.com/');
         await expect(browser).toHaveUrl('https://gcbcomputers.com/');
     }
 
-    async desktops () {
+    async desktops() {
         await this.windowsSystemsHover();
         await this.desktopsID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/windows-systems/desktops/');
     }
 
-    async gaming () {
+    async gaming() {
         await this.windowsSystemsHover();
         await this.gamingID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/windows-systems/gamers/');
     }
 
-    async laptops () {
+    async laptops() {
         await this.windowsSystemsHover();
         await this.laptopsID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/windows-systems/laptops/');
     }
 
-    async convertablesTablets () {
+    async convertablesTablets() {
         await this.windowsSystemsHover();
         await this.convertablesTabletsID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/windows-systems/convertibles-tablets/');
     }
 
-    async microMini () {
+    async microMini() {
         await this.windowsSystemsHover();
         await this.microMiniID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/windows-systems/micro-mini-systems/');
     }
 
     //ALL Windows Systems Functions in one
-    async allWindowsSystemsMenu () {
+    async allWindowsSystemsMenu() {
         await this.windowsSystems();
         await this.desktops();
         await this.gaming();
@@ -231,55 +231,55 @@ class GCBMenu extends Base {
 
 
     //Linux OS
-    async linuxOS () {
+    async linuxOS() {
         await this.linuxOSID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/linux-zorin-systems/');   
     }
     
     //Pricing Dropdown
-     async pricingHover () {
+     async pricingHover() {
         await $('a*=Pricing');
         await this.pricingID.moveTo();
         await this.overFiveID.waitForExist({ timeout: 2000 });
     }
     
-    async pricing () {
+    async pricing() {
         await this.pricingID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/computer/');
     }
 
-    async oneOrLess () {
+    async oneOrLess() {
         await this.pricingHover();
         await this.oneOrLessID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/computer/all100/');
     }
 
-    async twoOrLess () {
+    async twoOrLess() {
         await this.pricingHover();
         await this.twoOrLessID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/computer/all200/');
     }
   
-    async oneToThree () {
+    async oneToThree() {
         await this.pricingHover();
         await this.oneToThreeID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/computer/all300/');
     }
     
-    async twoToFive () {
+    async twoToFive() {
         await this.pricingHover();
         await this.twoToFiveID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/computer/all500/');
     }
 
-    async overFive () {
+    async overFive() {
         await this.pricingHover();
         await this.overFiveID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/computer/computers-over-500/');
     }
 
     //ALL Pricing Functions in one
-    async allPricingMenu () {
+    async allPricingMenu() {
         await this.pricing();
         await this.oneOrLess();
         await this.twoOrLess();
@@ -289,38 +289,38 @@ class GCBMenu extends Base {
     }
 
     //Accessories Btn
-    async accessories () {
+    async accessories() {
         await this.accessoriesID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/parts/');
     }
 
     //Repairs Btn
-    async repairs () {
+    async repairs() {
         await this.repairsID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/about/');
     }
 
     //Our Company Dropdown
-    async ourCompanyHover () {
+    async ourCompanyHover() {
         await $('a*=Our Company');
         await this.ourCompanyID.moveTo();
         // await browser.pause(1000);
         await this.warrantyID.waitForDisplayed({timeout:2000})
     }
     
-    async ourCompany () {
+    async ourCompany() {
         await this.ourCompanyID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/our-company/');
     }
 
     //FAQ Btn
-    async faq () {
+    async faq() {
         await this.ourCompanyHover();
         await this.faqID.click();
         await expect(browser).toHaveUrl('https://gcbcomputers.com/our-company/faq/');
     }
 
-    async warranty () {
+    async warranty() {
         await this.ourCompanyHover();
         await this.warrantyID.click();
         // await browser.pause(1000);
@@ -328,18 +328,18 @@ class GCBMenu extends Base {
     }
 
     //ALL Our Company Functions in one
-    async allOurCompanyMenu () {
+    async allOurCompanyMenu() {
         await this.ourCompany();
         await this.faq();
         await this.warranty();
     }
 
-    async recycling () {
+    async recycling() {
         await this.recyclingID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/recycling-program/');
     }
 
-    async gcbServers () {
+    async gcbServers() {
         await this.gcbServersID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/');
     }
@@ -347,7 +347,7 @@ class GCBMenu extends Base {
 
 
     //ALL GCB MENUS IN ONE 
-    async allGCBMenuItems () {
+    async allGCBMenuItems() {
         await this.openGCB();
         await this.homeBtnHomePage();
         await this.homePageVerify();
@@ -365,83 +365,82 @@ class GCBMenu extends Base {
 
 
 
-    async gcbLaytonHome () {
+    async gcbLaytonHome() {
         await this.gcbLaytonHomeID.click();
     }
 
-    async gcbServersFromLayton () {
+    async gcbServersFromLayton() {
         await this.gcbServersFromLaytonID.click();
     }
 
-    async gcbServersHomeBtn () {
+    async gcbServersHomeBtn() {
         await this.gcbServersHomeBtnID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/');
     }
 
-    async availableServers () {
+    async availableServers() {
         await this.availableServersID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/available-servers/');
     }
 
-    async networkingSolutions () {
+    async networkingSolutions() {
         await this.networkingSolutionsID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/networking-solutions/');
     }
 
-    async tools () {
+    async tools() {
         await this.toolsID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/cameras-tools/');
     }
     
     //Other Items Hover Function
-    async otherItemsHover () {
+    async otherItemsHover() {
         await $('a*=Other Items');
         await this.otherItemsID.moveTo();
-        // await browser.pause(1000);
         await this.computersID.waitForExist({timeout:2000})
     }
 
-    async otherItems () {
+    async otherItems() {
         await this.otherItemsID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/')
     }
 
-    async partsAccessories () {
+    async partsAccessories() {
         await this.otherItemsHover();
         await this.partsAccessoriesID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/parts-accessories/')
     }
 
-    async drivesDevices () {
+    async drivesDevices() {
         await this.otherItemsHover();
         await this.drivesDevicesID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/storage-drives-devices/')
     }
 
-    async computers () {
+    async computers() {
         await this.otherItemsHover();
         await this.computersID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/other-items-pcs-drives-parts-accessories/storage-solutions-other-items/')
     }
 
-    async allOtherItems () {
+    async allOtherItems() {
         await this.otherItems();
         await this.partsAccessories();
         await this.drivesDevices();
         await this.computers();
     }
 
-    async serversRepairs () {
+    async serversRepairs() {
         await this.serversRepairsID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/repairs/')
     }
 
-    async serversRecycling () {
+    async serversRecycling() {
         await this.serversRecyclingID.click();
         await expect(browser).toHaveUrl('https://servers.gcbcomputers.com/recycling-program/')
     }
 
-    async allServersMenus () {
+    async allServersMenus() {
         await this.gcbServersHomeBtn();
         await this.availableServers();
         await this.networkingSolutions();
