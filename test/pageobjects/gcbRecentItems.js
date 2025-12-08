@@ -12,24 +12,40 @@ class GCBRecentItems extends Base {
     }
 
 
-    async recentItems () {
-        // await this.trendingWrapperID;
-        await this.recentItemsID.then(async (links) => {
-    for (let link of links) {
-        await browser.url(await link.getAttribute('href'))
-        // await browser.pause(1000)
-        await browser.back()
-        expect([
-                'https://gcbcomputers.com/',
-                'https://servers.gcbcomputers.com/'
-            ]).toHaveUrl(await browser.getUrl());
+    // async recentItems () {
+    //     await this.recentItemsID.then(async (links) => {
+    // for (let link of links) {
+    //     await browser.url(await link.getAttribute('href'))
+    //     await browser.back()
+    //     expect([
+    //             'https://gcbcomputers.com/',
+    //             'https://servers.gcbcomputers.com/'
+    //         ]).toHaveUrl(await browser.getUrl());
+    // }
+
+    
+//     async recentItems() {
+//     for (let link of await this.recentItemsID) {
+//         await link.click();
+//         expect([
+//             'https://gcbcomputers.com/',
+//             'https://servers.gcbcomputers.com/'
+//         ]).not.toBe(await browser.getUrl());
+//         await browser.back();
+//         expect([
+//             'https://gcbcomputers.com/',
+//             'https://servers.gcbcomputers.com/'
+//         ]).toHaveUrl(await browser.getUrl());
+//     }
+// }
+
+    async recentItems() {
+    for (let link of await this.recentItemsID) {
+        await link.click();
+        await browser.back();
     }
-
-
-
-})
-
 }
+
 }
 
 export default new GCBRecentItems();
