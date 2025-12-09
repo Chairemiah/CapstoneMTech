@@ -40,7 +40,7 @@ class GCBMayHaveMissed extends Base {
     await this.gcbServersLinkID.click();
     }
 
-    async allMissedTest() {
+    async allMissed() {
         await this.openGCB();
         await this.youMayHaveMissed();
         await this.gcbServersLink();

@@ -43,7 +43,7 @@ export default class Base {
     
 
 
-    openGCB (path) {
+    openGCB() {
         return browser.url('https://gcbcomputers.com/')
     }
 
