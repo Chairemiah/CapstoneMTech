@@ -18,7 +18,7 @@ class GCBRecentItems extends Base {
         await link.click();
         await browser.back();
     }
-}
+    }
 
 }
 
