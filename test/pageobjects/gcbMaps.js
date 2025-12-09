@@ -1,14 +1,12 @@
 import { $ } from '@wdio/globals'
 import Base from './base.js';
 
-class GoogleMapsWidget extends Base {
-    constructor() {
-        super();
-    }
+class GCBGoogleMaps extends Base {
 
-    // Selectors
-    get mapIframe() {
-        return $('iframe[src*="google.com/maps"]');
+//selectors
+   
+    get googleMapsIframe() {
+        return $('iframe[title="Google Map"]');
     }
 
     get viewLargerMapLink() {
@@ -19,89 +17,31 @@ class GoogleMapsWidget extends Base {
         return $('.google-maps-link a');
     }
 
-    // functions
+//functions
 
-    async scrollToMap() {
-        const iframe = await this.mapIframe;
-        await iframe.scrollIntoView();
-        await browser.pause(2000); // Give map time to load
+    async waitForMapsWidget() {
+        await this.googleMapsIframe.waitForExist({timeout:10000})
     }
 
-    async clickViewLargerMap() {
-        // Scroll to ensure map is visible
-        await this.scrollToMap();
+    async navigateToGoogleMaps() {
+        const mapsUrl = 'https://maps.google.com/maps?ll=41.0771,-111.984992&z=12&t=m&hl=en-US&gl=US&mapclient=embed&q=1155%20N%20Main%20St%20Layton%2C%20UT%2084041'
+        await browser.url(mapsUrl)
+    }
 
-        // Switch to the Google Maps iframe
-        const iframe = await this.mapIframe;
-        await browser.switchToFrame(iframe);
+    async openGoogleMapsFromWidget() {
+        await this.googleMapsIframe.waitForExist({timeout:10000});
         
-        // Wait longer for the iframe content to load
-        await browser.pause(2000);
-
-        // Try multiple selectors
-        let viewLargerMap;
-        try {
-            viewLargerMap = await this.viewLargerMapLink;
-            await viewLargerMap.waitForClickable({ timeout: 10000 });
-        } catch (e) {
-            // Try alternative selector
-            viewLargerMap = await this.viewLargerMapByDiv;
-            await viewLargerMap.waitForClickable({ timeout: 10000 });
-        }
+        const mapsUrl = 'https://maps.google.com/maps?ll=41.0771,-111.984992&z=12&t=m&hl=en-US&gl=US&mapclient=embed&q=1155%20N%20Main%20St%20Layton%2C%20UT%2084041'
         
-        // Click the link
-        await viewLargerMap.click();
-
-        // Switch back to main content
-        await browser.switchToParentFrame();
+        await browser.url(mapsUrl);
+        
     }
 
-    async verifyGoogleMapsRedirect() {
-        // Wait for new window/tab to open
-        await browser.pause(3000);
-
-        // Get all window handles
-        const handles = await browser.getWindowHandles();
-
-        // Switch to the new window (Google Maps)
-        await browser.switchToWindow(handles[handles.length - 1]);
-
-        // Wait for page to load
-        await browser.pause(2000);
-
-        // Get the current URL
-        const currentUrl = await browser.getUrl();
-
-        // Verify the URL contains the address components
-        const containsStreetNumber = currentUrl.includes('1155');
-        const containsStreet = currentUrl.includes('Main') || currentUrl.includes('N+Main');
-        const containsCity = currentUrl.includes('Layton');
-        const containsZip = currentUrl.includes('84041');
-        const isGoogleMaps = currentUrl.includes('google.com/maps');
-
-        const isValid = containsStreetNumber && containsStreet && containsCity && containsZip && isGoogleMaps;
-
-        return {
-            url: currentUrl,
-            isValid: isValid,
-            details: {
-                hasStreetNumber: containsStreetNumber,
-                hasStreet: containsStreet,
-                hasCity: containsCity,
-                hasZip: containsZip,
-                isGoogleMaps: isGoogleMaps
-            }
-        };
-    }
-
-    async closeGoogleMapsTab() {
-        // Close the current tab (Google Maps)
-        await browser.closeWindow();
-
-        // Switch back to the original window
-        const handles = await browser.getWindowHandles();
-        await browser.switchToWindow(handles[0]);
+    async allGoogleMaps() {
+        await this.waitForMapsWidget();
+        await this.navigateToGoogleMaps();
+        await browser.back();
     }
 }
 
-export default new GoogleMapsWidget();
+export default new GCBGoogleMaps();

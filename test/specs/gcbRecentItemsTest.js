@@ -1,4 +1,3 @@
-// import { expect } from '@wdio/globals'
 import GCBRecentItems from '../pageobjects/gcbRecentItems.js'
 
 

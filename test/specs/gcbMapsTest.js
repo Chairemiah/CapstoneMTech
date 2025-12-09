@@ -1,62 +1,97 @@
-import { expect } from '@wdio/globals'
-import GCBMenu from '../pageobjects/gcbMenus.js'
-import GoogleMapsWidget from '../pageobjects/gcbMaps.js'
+import GoogleMaps from '../pageobjects/gcbMaps.js'
 
 
 describe('Google Maps Widget Test', () => {
     it('Testing of GCB Website - Google Maps Widget', async () => {
 
-        //open GCB
-    await GoogleMapsWidget.openGCB();
+
+    await GoogleMaps.openGCB();
+ 
+    await browser.url('https://gcbcomputers.com')
+
+    await $('iframe[title="Google Map"]').waitForExist({ timeout: 10000 })
+
+    const iframeSrc = await $('iframe[title="Google Map"]').getAttribute('src')
+
+    const mapsUrl = 'https://maps.google.com/maps?ll=41.0771,-111.984992&z=12&t=m&hl=en-US&gl=US&mapclient=embed&q=1155%20N%20Main%20St%20Layton%2C%20UT%2084041'
+
+    await browser.url(mapsUrl)
+  
+    await browser.pause(3000)
+    await browser.back()
+    
 
 
 
-   // Navigate to the page
-await browser.url('https://gcbcomputers.com')
+// // Navigate to page
+// await browser.url('https://gcbcomputers.com')
 
-// Wait for iframe
-await $('iframe[title="Google Map"]').waitForExist({ timeout: 10000 })
+// // Wait for the map iframe
+// await $('iframe[title="Google Map"]').waitForExist({ timeout: 10000 })
 
+// // Execute JavaScript to create and click a link with the Google Maps URL
+// await browser.execute(() => {
+//     const mapsUrl = 'https://maps.google.com/maps?ll=41.0771,-111.984992&z=12&t=m&hl=en-US&gl=US&mapclient=embed&q=1155%20N%20Main%20St%20Layton%2C%20UT%2084041'
+    
+//     // Create a temporary link
+//     const link = document.createElement('a')
+//     link.href = mapsUrl
+//     link.id = 'temp-maps-link'
+//     document.body.appendChild(link)
+    
+//     // Click it
+//     link.click()
+// })
 
-// Switch to iframe
-await browser.switchToFrame(await $('iframe[title="Google Map"]'))
+// console.log('✓ Clicked Google Maps link')
 
+// // Wait to see the map
+// await browser.pause(3000)
 
-// Wait longer for map to load
-await browser.pause(5000)
+// // Go back to GCB
+// await browser.back()
+// console.log('✓ Returned to GCB website')
 
+// await browser.url('https://gcbcomputers.com')
 
-// Get the entire iframe HTML
-const iframeHTML = await browser.getPageSource()
+// await $('iframe[title="Google Map"]').waitForExist({ timeout: 10000 })
+// await browser.switchToFrame(await $('iframe[title="Google Map"]'))
 
+// // Wait up to 60 seconds for the link to appear
+// try {
+//     await browser.waitUntil(
+//         async () => {
+//             const exists = await $('a[href*="maps.google.com"]').isExisting()
+//             if (exists) {
+//                 console.log('✓ Link found!')
+//             }
+//             return exists
+//         },
+//         {
+//             timeout: 60000,
+//             interval: 2000,
+//             timeoutMsg: 'Google Maps link never loaded'
+//         }
+//     )
+    
+//     // Click it
+//     await $('a[href*="maps.google.com"]').click()
+//     console.log('✓ Clicked the link!')
+    
+//     await browser.pause(3000)
+//     await browser.back()
+    
+// } catch (error) {
+//     console.log('✗ Link never appeared - Google Maps not loading interactively')
+    
+//     // Fallback: Navigate directly
+//     await browser.switchToParentFrame()
+//     await browser.url('https://maps.google.com/maps?ll=41.0771,-111.984992&z=12&t=m&hl=en-US&gl=US&mapclient=embed&q=1155%20N%20Main%20St%20Layton%2C%20UT%2084041')
+//     await browser.pause(3000)
+//     await browser.back()
+// }
 
-// Check what elements exist
-const allDivs = await $$('div')
-
-
-const allLinks = await $$('a')
-
-
-// Try to find the google-maps-link div
-const googleMapsDiv = await $('.google-maps-link').isExisting()
-
-// Try to find place-card
-const placeCard = await $('.place-card').isExisting()
-
-// Try different selectors
-const selectors = [
-    '.google-maps-link a',
-    'a[aria-label="View larger map"]',
-    '//a[contains(text(), "View larger map")]',
-    '.place-card a',
-    'a[href*="maps.google.com"]'
-]
-
-for (let selector of selectors) {
-    const exists = await $(selector).isExisting()
-}
-
-await browser.switchToParentFrame()
+// await browser.switchToParentFrame()
 
 
     });

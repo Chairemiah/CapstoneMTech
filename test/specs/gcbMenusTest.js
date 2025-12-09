@@ -1,4 +1,3 @@
-// import { expect } from '@wdio/globals'
 import GCBMenu from '../pageobjects/gcbMenus.js'
 
 

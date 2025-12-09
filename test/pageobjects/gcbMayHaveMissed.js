@@ -18,7 +18,6 @@ class GCBMayHaveMissed extends Base {
     }
 
 
-
 // functions
 
     async missedWidget() {
@@ -29,8 +28,8 @@ class GCBMayHaveMissed extends Base {
     for (let link of await this.allMissedLinksID) {
         await link.click();
         await browser.back();
-    }
-    }
+    }}
+    
 
     async youMayHaveMissed() {
     await this.missedWidget();
@@ -41,7 +40,7 @@ class GCBMayHaveMissed extends Base {
     await this.gcbServersLinkID.click();
     }
 
-    async fullMissedTest() {
+    async allMissedTest() {
         await this.openGCB();
         await this.youMayHaveMissed();
         await this.gcbServersLink();

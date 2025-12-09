@@ -4,9 +4,9 @@ import Base from './base.js';
 class GCBRecentItems extends Base {
   
 //selectors
-    get trendingWrapperID () {
-        return $('.trending-wrapper');
-    }
+    // get trendingWrapperID () {
+    //     return $('.trending-wrapper');
+    // }
 
     get recentItemsID () {
         return $$('.trending-content a[href*="gcbcomputers.com"]');
