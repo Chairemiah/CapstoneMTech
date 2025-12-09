@@ -165,7 +165,6 @@ class GCBMenu extends Base {
 
 //functions
 
-
     async homeBtnHomePage() {
         await this.homeBtnHomePageClass.click();
     }

@@ -1,51 +1,63 @@
-// import { expect } from '@wdio/globals'
-// import GCBMenu from '../pageobjects/gcbMenus.js'
-// import GoogleMapsWidget from '../pageobjects/gcbMaps.js'
+import { expect } from '@wdio/globals'
+import GCBMenu from '../pageobjects/gcbMenus.js'
+import GoogleMapsWidget from '../pageobjects/gcbMaps.js'
 
 
-// describe('Google Maps Widget Test', () => {
-//     it('should click View larger map and verify redirect to correct address', async () => {
-        
-//         // Open GCB
-//         await GoogleMapsWidget.openGCB();
-        
-//         // Click "View larger map" in the widget
-//         await GoogleMapsWidget.clickViewLargerMap();
-        
-//         // Verify the redirect to Google Maps with correct address
-//         const result = await GoogleMapsWidget.verifyGoogleMapsRedirect();
-        
-//         // Log the results
-//         console.log(`Redirected to: ${result.url}`);
-//         console.log('Validation details:', result.details);
-        
-//         // Assertions
-//         expect(result.isValid).toBe(true);
-//         expect(result.url).toContain('google.com/maps');
-//         expect(result.url).toContain('1155');
-//         expect(result.url).toContain('Layton');
-//         expect(result.url).toContain('84041');
-        
-//         // Clean up - close Google Maps tab and return to main window
-//         await GoogleMapsWidget.closeGoogleMapsTab();
-//     });
+describe('Google Maps Widget Test', () => {
+    it('Testing of GCB Website - Google Maps Widget', async () => {
 
-//     it('should verify View larger map link is present', async () => {
-//         await GoogleMapsWidget.open();
-        
-//         await GoogleMapsWidget.scrollToMap();
-        
-//         // Switch to iframe
-//         await browser.switchToFrame(await GoogleMapsWidget.mapIframe);
-        
-//         // Check if link exists
-//         const link = await GoogleMapsWidget.viewLargerMapLink;
-//         await link.waitForDisplayed({ timeout: 5000 });
-        
-//         const linkText = await link.getText();
-//         expect(linkText).toBe('View larger map');
-        
-//         // Switch back
-//         await browser.switchToParentFrame();
-//     });
-// });
+        //open GCB
+    await GoogleMapsWidget.openGCB();
+
+
+
+   // Navigate to the page
+await browser.url('https://gcbcomputers.com')
+
+// Wait for iframe
+await $('iframe[title="Google Map"]').waitForExist({ timeout: 10000 })
+
+
+// Switch to iframe
+await browser.switchToFrame(await $('iframe[title="Google Map"]'))
+
+
+// Wait longer for map to load
+await browser.pause(5000)
+
+
+// Get the entire iframe HTML
+const iframeHTML = await browser.getPageSource()
+
+
+// Check what elements exist
+const allDivs = await $$('div')
+
+
+const allLinks = await $$('a')
+
+
+// Try to find the google-maps-link div
+const googleMapsDiv = await $('.google-maps-link').isExisting()
+
+// Try to find place-card
+const placeCard = await $('.place-card').isExisting()
+
+// Try different selectors
+const selectors = [
+    '.google-maps-link a',
+    'a[aria-label="View larger map"]',
+    '//a[contains(text(), "View larger map")]',
+    '.place-card a',
+    'a[href*="maps.google.com"]'
+]
+
+for (let selector of selectors) {
+    const exists = await $(selector).isExisting()
+}
+
+await browser.switchToParentFrame()
+
+
+    });
+});
