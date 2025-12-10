@@ -2,8 +2,6 @@ import { browser } from '@wdio/globals'
 
 
 export default class Base {
-    
-//selectors
 
     get homePage () {
         return $('//*[@href=https://gcbcomputers.com/');
@@ -17,9 +15,9 @@ export default class Base {
         return $('.fa fa-home')
     }
 
-
-
-//functions
+    openGCB() {
+        return browser.url('https://gcbcomputers.com/')
+    }
 
     async homePageVerify () {
         await browser.url('https://gcbcomputers.com/')
@@ -35,19 +33,25 @@ export default class Base {
     }
 
     async windowsSystemsHover () {;
-        await this.windowsSystemsID.moveTo();
-        await browser.pause(500);
+        await this.hoverMenuItems('Windows Systems').moveTo();
+        await this.subMenuItems('Laptops').waitForExist({timeout:3000})
     }
 
-    hoverFunction() {
-        return 
+    async pricingHover() {
+        await this.hoverMenuItems('Pricing').moveTo();
+        await this.subMenuItems('Over $500').waitForExist({timeout:3000});
+    }
+
+    async ourCompanyHover() {
+        await this.hoverMenuItems('Our Company').moveTo();
+        await this.primaryMenuItems('Warranty').waitForDisplayed({timeout:3000});
+    }
+
+    async otherItemsHover() {
+        await this.hoverMenuItems('Other Items').moveTo();
+        await this.subMenuItems('Computers').waitForExist({timeout:3000})
     }
 
 
-    openGCB() {
-        return browser.url('https://gcbcomputers.com/')
-    }
-
-    
 
 }

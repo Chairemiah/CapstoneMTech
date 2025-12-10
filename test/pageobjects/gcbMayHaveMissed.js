@@ -2,9 +2,6 @@ import { $ } from '@wdio/globals'
 import Base from './base.js';
 
 class GCBMayHaveMissed extends Base {
-
-// selectors
-
     get missedWidgetID() {
     return $('.ct-missed-block');
     }
@@ -16,9 +13,6 @@ class GCBMayHaveMissed extends Base {
     get gcbServersLinkID() {
     return $('#menu-item-19927')
     }
-
-
-// functions
 
     async missedWidget() {
     await this.missedWidgetID.waitForExist({timeout:5000});
@@ -46,7 +40,6 @@ class GCBMayHaveMissed extends Base {
         await this.gcbServersLink();
         await this.youMayHaveMissed();
     }
-
 }
 
 export default new GCBMayHaveMissed();

@@ -1,8 +1,7 @@
 import { $ } from '@wdio/globals'
 import Base from './base.js';
 
-class GCBMenu extends Base {
-  
+class GCBMenu extends Base { 
     get gcbServersHomeBtnID() {
         return $('.current-menu-item')
     }
@@ -19,23 +18,10 @@ class GCBMenu extends Base {
         return $(`//*[*]//a[contains(text(), "${menuName}")]`)
     }
 
-
-    expectStringUrl(UrlName) {
-        return $(expect(browser).toHaveUrl(expect.stringContaining({UrlName})));
-    }
-
-    async homeBtnHomePage() {
-        await this.homeBtnHomePageClass.click();
-    }
-
-    async homeBtn() {
-        await this.homeBtnClass.click();
-    }
-
-    async windowsSystemsHover() {
-        await this.hoverMenuItems('Windows Systems').moveTo();
-        await this.subMenuItems('Laptops').waitForExist({timeout:3000})
-    }
+    // async windowsSystemsHover() {
+    //     await this.hoverMenuItems('Windows Systems').moveTo();
+    //     await this.subMenuItems('Laptops').waitForExist({timeout:3000})
+    // }
 
     async windowsSystems() {
         await this.primaryMenuItems('Windows Systems').click();
@@ -86,10 +72,10 @@ class GCBMenu extends Base {
         await expect(browser).toHaveUrl(expect.stringContaining('linux'));  
     }
 
-     async pricingHover() {
-        await this.hoverMenuItems('Pricing').moveTo();
-        await this.subMenuItems('Over $500').waitForExist({timeout:3000});
-    }
+    // async pricingHover() {
+    //     await this.hoverMenuItems('Pricing').moveTo();
+    //     await this.subMenuItems('Over $500').waitForExist({timeout:3000});
+    // }
     
     async pricing() {
         await this.primaryMenuItems('Pricing').click();
@@ -145,10 +131,10 @@ class GCBMenu extends Base {
         await expect(browser).toHaveUrl(expect.stringContaining('about'));
     }
 
-    async ourCompanyHover() {
-        await this.hoverMenuItems('Our Company').moveTo();
-        await this.primaryMenuItems('Warranty').waitForDisplayed({timeout:3000});
-    }
+    // async ourCompanyHover() {
+    //     await this.hoverMenuItems('Our Company').moveTo();
+    //     await this.primaryMenuItems('Warranty').waitForDisplayed({timeout:3000});
+    // }
     
     async ourCompany() {
         await this.primaryMenuItems('Our Company').click();
@@ -227,10 +213,10 @@ class GCBMenu extends Base {
         await expect(browser).toHaveUrl(expect.stringContaining('cameras-tools'));
     }
     
-    async otherItemsHover() {
-        await this.hoverMenuItems('Other Items').moveTo();
-        await this.subMenuItems('Computers').waitForExist({timeout:3000})
-    }
+    // async otherItemsHover() {
+    //     await this.hoverMenuItems('Other Items').moveTo();
+    //     await this.subMenuItems('Computers').waitForExist({timeout:3000})
+    // }
 
     async otherItems() {
         await this.primaryMenuItems('Other Items').click();
@@ -282,6 +268,10 @@ class GCBMenu extends Base {
         await this.serversRecycling();
     }
 
+    async allMenus() {
+        await this.allGCBMenuItems();
+        await this.allServersMenus();
+    }
 }
 
 export default new GCBMenu();
