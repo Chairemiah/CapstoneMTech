@@ -32,26 +32,29 @@ export default class Base {
         await this.homeBtnClass.click();
     }
 
-    async windowsSystemsHover () {;
-        await this.hoverMenuItems('Windows Systems').moveTo();
-        await this.subMenuItems('Laptops').waitForExist({timeout:3000})
-    }
+    // async hoverForLoop(primaryMenu, subMenu) {
+    //     await this.hoverMenuItems(primaryMenu).moveTo();
+    //     // await this.subMenuItems(subMenu).waitForExist({timeout:3000})
+    // }
 
-    async pricingHover() {
-        await this.hoverMenuItems('Pricing').moveTo();
-        await this.subMenuItems('Over $500').waitForExist({timeout:3000});
-    }
+    // async windowsSystemsHover () {;
+    //     await this.hoverMenuItems('Windows Systems').moveTo();
+    //     await this.subMenuItems('Laptops').waitForExist({timeout:3000})
+    // }
 
-    async ourCompanyHover() {
-        await this.hoverMenuItems('Our Company').moveTo();
-        await this.primaryMenuItems('Warranty').waitForDisplayed({timeout:3000});
-    }
+    // async pricingHover() {
+    //     await this.hoverMenuItems('Pricing').moveTo();
+    //     await this.subMenuItems('Over $500').waitForExist({timeout:3000});
+    // }
 
-    async otherItemsHover() {
-        await this.hoverMenuItems('Other Items').moveTo();
-        await this.subMenuItems('Computers').waitForExist({timeout:3000})
-    }
+    // async ourCompanyHover() {
+    //     await this.hoverMenuItems('Our Company').moveTo();
+    //     await this.primaryMenuItems('Warranty').waitForDisplayed({timeout:3000});
+    // }
 
-
+    // async otherItemsHover() {
+    //     await this.hoverMenuItems('Other Items').moveTo();
+    //     await this.subMenuItems('Computers').waitForExist({timeout:3000})
+    // }
 
 }

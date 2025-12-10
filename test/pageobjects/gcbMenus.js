@@ -9,14 +9,127 @@ class GCBMenu extends Base {
     subMenuItems(menuName) {
         return $(`//ul[@class="sub-menu"]//a[contains(text(), "${menuName}")]`)
     }
-
+                // remove attribute "class/id" and have just one selector
     primaryMenuItems(menuName) {
         return $(`//ul[@id="primary-menu"]//a[contains(text(), "${menuName}")]`)
     }
 
     hoverMenuItems(menuName) {
-        return $(`//*[*]//a[contains(text(), "${menuName}")]`)
+        return $(`//a[contains(text(), "${menuName}")]`)
     }
+
+    menuNamesArray = [
+        'Windows Systems',
+        'Desktops',
+        'Gaming',
+        'Laptops',
+        'Convertibles & Tablets',
+        'Micro/Mini',
+        'Linux OS',
+        'Pricing',
+        '$100 or Less',
+        '$200 or Less',
+        '$101 to $300',
+        '$201 to $500',
+        'Over $500',
+        'Accessories',
+        'Repairs',
+        'Our Company',
+        'FAQ',
+        'Warranty',
+        'Recycling',
+        'GCB Servers',
+        'GCB Layton',
+        'GCB Servers',
+        'Available Servers',
+        'Networking Solutions',
+        'Tools',
+        'Other Items',
+        'Parts & Accessories',
+        'Drives & Devices',
+        'Computers',
+        'Repairs',
+        'Recycling Program',
+    ]
+
+
+    subMenuNamesArray = []
+
+    
+
+    primaryMenuNamesObject = [
+        {
+            name: 'Windows Systems',
+            url: 'gcbcomputers',
+            subMenu: [
+                {
+                    name: 'Desktops',
+                    url:  'desktops',
+                },
+                {
+                    name: 'Gaming',
+                    url:  'gamers',
+                },
+                {
+                    name: 'Laptops',
+                    url:  'laptops',
+                },
+                {
+                    name: 'Convertibles & Tablets',
+                    url:  'convertibles-tablets',
+                },
+                {
+                    name: 'Micro/Mini',
+                    url:  'micro-mini-systems',
+                },
+
+            ]
+        
+        },
+        {
+            name: 'Linux OS',
+            url: 'linux',
+        },
+        {
+            name: 'Pricing',
+            url: 'computer',
+        },
+        {
+            name: 'Accessories',
+            url: 'parts',
+        },
+        {
+            name: 'Repairs',
+            url: 'about',
+        },
+        {
+            name: 'Our Company',
+            url: 'our-company',
+        },
+        {
+            name: 'Recycling',
+            url: 'recycling',
+        },
+        {
+            name: 'GCB Servers',
+            url: 'servers.gcb',
+        }
+        
+    ]
+
+    async loopingMenus() {
+        for (let i = 0; i < this.primaryMenuNamesObject.length; i++) {
+            await this.primaryMenuItems(this.primaryMenuNamesObject[i].name).moveTo(); //Don't need this for Primary, use for subMenus
+            await this.primaryMenuItems(this.primaryMenuNamesObject[i].name).click();
+            await expect(browser).toHaveUrl(expect.stringContaining(this.primaryMenuNamesObject[i].url));
+            if (i == 6) {
+                await browser.back();
+            }
+        }
+    }
+
+    
+
 
     async windowsSystems() {
         await this.primaryMenuItems('Windows Systems').click();
@@ -249,8 +362,9 @@ class GCBMenu extends Base {
     }
 
     async allMenus() {
-        await this.allGCBMenuItems();
-        await this.allServersMenus();
+        // await this.allGCBMenuItems();
+        // await this.allServersMenus();
+        await this.loopingMenus();
     }
 }
 
