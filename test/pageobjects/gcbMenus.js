@@ -18,11 +18,6 @@ class GCBMenu extends Base {
         return $(`//*[*]//a[contains(text(), "${menuName}")]`)
     }
 
-    // async windowsSystemsHover() {
-    //     await this.hoverMenuItems('Windows Systems').moveTo();
-    //     await this.subMenuItems('Laptops').waitForExist({timeout:3000})
-    // }
-
     async windowsSystems() {
         await this.primaryMenuItems('Windows Systems').click();
         await browser.url('https://gcbcomputers.com/');
@@ -71,11 +66,6 @@ class GCBMenu extends Base {
         await this.primaryMenuItems('Linux OS').click();
         await expect(browser).toHaveUrl(expect.stringContaining('linux'));  
     }
-
-    // async pricingHover() {
-    //     await this.hoverMenuItems('Pricing').moveTo();
-    //     await this.subMenuItems('Over $500').waitForExist({timeout:3000});
-    // }
     
     async pricing() {
         await this.primaryMenuItems('Pricing').click();
@@ -130,11 +120,6 @@ class GCBMenu extends Base {
         await this.primaryMenuItems('Repairs').click();
         await expect(browser).toHaveUrl(expect.stringContaining('about'));
     }
-
-    // async ourCompanyHover() {
-    //     await this.hoverMenuItems('Our Company').moveTo();
-    //     await this.primaryMenuItems('Warranty').waitForDisplayed({timeout:3000});
-    // }
     
     async ourCompany() {
         await this.primaryMenuItems('Our Company').click();
@@ -213,11 +198,6 @@ class GCBMenu extends Base {
         await expect(browser).toHaveUrl(expect.stringContaining('cameras-tools'));
     }
     
-    // async otherItemsHover() {
-    //     await this.hoverMenuItems('Other Items').moveTo();
-    //     await this.subMenuItems('Computers').waitForExist({timeout:3000})
-    // }
-
     async otherItems() {
         await this.primaryMenuItems('Other Items').click();
         await expect(browser).toHaveUrl(expect.stringContaining('other-items-pcs-drives-parts-accessories'));
