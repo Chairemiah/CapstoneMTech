@@ -34,13 +34,14 @@ export default class Base {
         await this.homeBtnClass.click();
     }
 
-    async windowsSystemsHover () {
-        await $('a*=Windows Systems');
+    async windowsSystemsHover () {;
         await this.windowsSystemsID.moveTo();
         await browser.pause(500);
     }
 
-    
+    hoverFunction() {
+        return 
+    }
 
 
     openGCB() {
