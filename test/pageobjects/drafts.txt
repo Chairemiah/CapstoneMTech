@@ -1,0 +1,42 @@
+ //loop with 'let' commands but we'll try it without in the actual p.o. file 
+ // but keeping this as a backup just in case something breaks along the way
+
+ async loopingMenus() {
+        for (let i = 0; i < this.primaryMenuObject.length; i++) {
+            // await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo(); //Don't need this for Primary, use for subMenus
+            await this.primaryMenuItems(this.primaryMenuObject[i].name).click();
+            await expect(browser).toHaveUrl(expect.stringContaining(this.primaryMenuObject[i].url));
+            if (this.primaryMenuObject[i].name == 'Recycling') {
+                await browser.back();
+            };
+                    
+
+                if (this.primaryMenuObject[i].subMenu &&
+                    this.primaryMenuObject[i].subMenu.length > 0) {
+                        await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo();
+
+                    for (let j = 0; j < this.primaryMenuObject[i].subMenu.length; j++) {
+
+                        // let subName = this.primaryMenuObject[i].subMenu[j].name;
+                        // let subUrl  = this.primaryMenuObject[i].subMenu[j].url;
+
+                        await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo();
+                        // await this.subMenuItems(subName).click();
+                        await this.subMenuItems(this.primaryMenuObject[i].subMenu[j].name).click();
+
+                        // await expect(browser).toHaveUrl(expect.stringContaining(subUrl));
+                        await expect(browser).toHaveUrl(expect.stringContaining(this.primaryMenuObject[i].subMenu[j].url));
+
+                            // if (subName == 'Warranty') {
+                            //     await browser.back();
+                            // };
+
+                            if (this.primaryMenuObject[i].subMenu[j].name == 'Warranty') {
+                                await browser.back();
+                            };
+                    
+                    };
+                };
+            // await browser.back();
+        };
+    };

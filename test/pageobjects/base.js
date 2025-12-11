@@ -3,20 +3,24 @@ import { browser } from '@wdio/globals'
 
 export default class Base {
 
-    get homePage () {
-        return $('//*[@href=https://gcbcomputers.com/');
-    }
+    // get homePage () {
+    //     return $('//*[@href=https://gcbcomputers.com/');
+    // }
 
-    get homeBtnHomePageClass () {
-        return $('.current-menu-item');
-    }
+    // get homeBtnHomePageClass () {
+    //     return $('.current-menu-item');
+    // }
     
-    get homeBtnClass () {
-        return $('.fa fa-home')
-    }
+    // get homeBtnClass () {
+    //     return $('.fa fa-home')
+    // }
 
     openGCB() {
         return browser.url('https://gcbcomputers.com/')
+    }
+
+    openGCBServers() {
+        return browser.url('https://servers.gcbcomputers.com/')
     }
 
     async homePageVerify () {
@@ -24,13 +28,13 @@ export default class Base {
         await expect(browser).toHaveUrl('https://gcbcomputers.com/')
     }
 
-    async homeBtnHomePage () {
-        await this.homeBtnHomePageClass.click();
-    }
+    // async homeBtnHomePage () {
+    //     await this.homeBtnHomePageClass.click();
+    // }
 
-    async homeBtn () {
-        await this.homeBtnClass.click();
-    }
+    // async homeBtn () {
+    //     await this.homeBtnClass.click();
+    // }
 
     // async hoverForLoop(primaryMenu, subMenu) {
     //     await this.hoverMenuItems(primaryMenu).moveTo();
