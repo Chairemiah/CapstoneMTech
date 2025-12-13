@@ -1,9 +1,8 @@
 import GCBMenu from '../pageobjects/gcbMenus.js'
 
 
-describe('GCB Computers Test', () => {
-    it('Testing of GCB Website - Dropdown and Menus', async () => {
-        await GCBMenu.openGCB();
+describe('Testing of GCB Website - Dropdown and Menus', () => {
+    it('should test all dropdown menus', async () => {
         await GCBMenu.allMenus();
     })
 })

@@ -1,8 +1,8 @@
 import GCBMayHaveMissed from '../pageobjects/gcbMayHaveMissed.js'
 
 
-describe('GCB Computers Test', () => {
-    it('Testing of GCB Website - You May Have Missed and In Case You Missed It', async () => {
+describe('Testing of GCB Website - You May Have Missed and In Case You Missed It', () => {
+    it('should test these sections of the website', async () => {
         await GCBMayHaveMissed.allMissed();
     })
 })

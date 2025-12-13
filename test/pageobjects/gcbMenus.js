@@ -151,20 +151,17 @@ class GCBMenu extends Base {
 
     async loopingMenus() {
         for (let i = 0; i < this.primaryMenuObject.length; i++) {
-            // await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo(); //Don't need this for Primary, use for subMenus
             await this.primaryMenuItems(this.primaryMenuObject[i].name).click();
             await expect(browser).toHaveUrl(expect.stringContaining(this.primaryMenuObject[i].url));
             if (this.primaryMenuObject[i].name == 'Recycling') {
                 await browser.back();
             };
                     
-
                 if (this.primaryMenuObject[i].subMenu &&
                     this.primaryMenuObject[i].subMenu.length > 0) {
                         await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo();
 
                     for (let j = 0; j < this.primaryMenuObject[i].subMenu.length; j++) {
-
                         await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo();
                         await this.subMenuItems(this.primaryMenuObject[i].subMenu[j].name).click();
                         await expect(browser).toHaveUrl(expect.stringContaining(this.primaryMenuObject[i].subMenu[j].url));
@@ -177,8 +174,7 @@ class GCBMenu extends Base {
     };
 
     async allMenus() {
-        // await this.allGCBMenuItems();
-        // await this.allServersMenus();
+        await this.openGCB();
         await this.loopingMenus();
     };
 }
