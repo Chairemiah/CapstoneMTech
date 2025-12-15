@@ -1,8 +1,7 @@
 import { $ } from '@wdio/globals'
 import Base from './base.js';
 
-class GCBComputersPage extends Base {
-    // Google Maps Widget Selectors
+class GCBMaps extends Base {
     get mapsIframe() {
         return $('iframe[title="Google Map"]');
     }
@@ -11,58 +10,51 @@ class GCBComputersPage extends Base {
         return $('a[aria-label="View larger map"]');
     }
     
-    // Actions
-    async open() {
-        await browser.url('https://gcbcomputers.com/');
-    }
-    
-    async scrollToMap() {
-        // Scroll halfway down the page
+    async scrollDown() {
         await browser.execute(() => {
             window.scrollTo(0, document.body.scrollHeight / 2);
         });
-        await browser.pause(2000); // Wait for map to load
+        await expect(this.mapsIframe).toBeExisting();
     }
     
-    async clickViewLargerMap() {
-        // Wait for iframe to be present
-        await this.mapsIframe.waitForExist({ timeout: 15000 });
-        
-        // Switch to the Google Maps iframe using the element directly
+    async viewLargerMap() {
         await browser.switchFrame(await this.mapsIframe);
-        
-        // Wait for the link to be clickable inside the iframe
-        await this.viewLargerMapLink.waitForClickable({ timeout: 15000 });
-        
-        // Click the link
         await this.viewLargerMapLink.click();
-        
-        // Switch back to top level frame
         await browser.switchFrame(null);
         
-        // Wait a moment for the new tab to open
-        await browser.pause(2000);
     }
     
     async verifyNewTabOpened() {
-        const handles = await browser.getWindowHandles();
-        return handles.length > 1;
+        return (await browser.getWindowHandles()).length > 1;
     }
-    
+
     async switchToNewTab() {
-        const handles = await browser.getWindowHandles();
-        if (handles.length > 1) {
-            await browser.switchToWindow(handles[1]);
-        }
+        if ((await browser.getWindowHandles()).length > 1) {
+            await browser.switchToWindow(
+                (await browser.getWindowHandles())[1]
+            );
+        };
+        await expect(browser).toHaveUrl(expect.stringContaining('google.com/maps'));
     }
-    
+
     async closeNewTabAndReturnToMain() {
-        const handles = await browser.getWindowHandles();
-        if (handles.length > 1) {
+        if ((await browser.getWindowHandles()).length > 1) {
             await browser.closeWindow();
-            await browser.switchToWindow(handles[0]);
-        }
+            await browser.switchToWindow(
+                (await browser.getWindowHandles())[0]
+            );
+        };
+        await expect(browser).toHaveUrl(expect.stringContaining('gcbcomputers.com'));
+    }
+
+    async googleMaps() {
+        await this.openGCB();
+        await this.scrollDown();
+        await this.viewLargerMap();
+        await this.verifyNewTabOpened();
+        await this.switchToNewTab();
+        await this.closeNewTabAndReturnToMain();
     }
 }
 
-export default new GCBComputersPage();
+export default new GCBMaps();

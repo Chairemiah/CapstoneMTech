@@ -14,7 +14,7 @@ class GCBMenu extends Base {
         return $(`//a[contains(text(), "${menuName}")]`);
     };    
 
-    primaryMenuObject = [
+    allMenusObject = [
         {
             name: 'Windows Systems',
             url: 'gcbcomputers',
@@ -150,22 +150,21 @@ class GCBMenu extends Base {
     ]
 
     async loopingMenus() {
-        for (let i = 0; i < this.primaryMenuObject.length; i++) {
-            await this.primaryMenuItems(this.primaryMenuObject[i].name).click();
-            await expect(browser).toHaveUrl(expect.stringContaining(this.primaryMenuObject[i].url));
-            if (this.primaryMenuObject[i].name == 'Recycling') {
-                await browser.back();
-            };
-                    
-                if (this.primaryMenuObject[i].subMenu &&
-                    this.primaryMenuObject[i].subMenu.length > 0) {
-                        await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo();
+        for (let i = 0; i < this.allMenusObject.length; i++) {
+            await this.primaryMenuItems(this.allMenusObject[i].name).click();
+            await expect(browser).toHaveUrl(expect.stringContaining(this.allMenusObject[i].url)),{timeout:5000};
+                if (this.allMenusObject[i].name == 'Recycling') {
+                    await browser.back();
+                };     
+                if (this.allMenusObject[i].subMenu &&
+                    this.allMenusObject[i].subMenu.length > 0) {
+                    await this.primaryMenuItems(this.allMenusObject[i].name).moveTo();
 
-                    for (let j = 0; j < this.primaryMenuObject[i].subMenu.length; j++) {
-                        await this.primaryMenuItems(this.primaryMenuObject[i].name).moveTo();
-                        await this.subMenuItems(this.primaryMenuObject[i].subMenu[j].name).click();
-                        await expect(browser).toHaveUrl(expect.stringContaining(this.primaryMenuObject[i].subMenu[j].url));
-                            if (this.primaryMenuObject[i].subMenu[j].name == 'Warranty') {
+                    for (let j = 0; j < this.allMenusObject[i].subMenu.length; j++) {
+                        await this.primaryMenuItems(this.allMenusObject[i].name).moveTo();
+                        await this.subMenuItems(this.allMenusObject[i].subMenu[j].name).click();
+                        await expect(browser).toHaveUrl(expect.stringContaining(this.allMenusObject[i].subMenu[j].url)),{timeout:5000};
+                            if (this.allMenusObject[i].subMenu[j].name == 'Warranty') {
                                 await browser.back();
                             };
                     };
