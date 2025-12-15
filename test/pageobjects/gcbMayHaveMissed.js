@@ -39,6 +39,7 @@ class GCBMayHaveMissed extends Base {
         await this.youMayHaveMissed();
         await this.gcbServersLink();
         await this.youMayHaveMissed();
+        await this.openGCBServers();
     }
 }
 

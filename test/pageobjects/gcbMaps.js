@@ -2,11 +2,15 @@ import { $ } from '@wdio/globals'
 import Base from './base.js';
 
 class GCBMaps extends Base {
-    get mapsIframe() {
+    get mapsIframeID() {
         return $('iframe[title="Google Map"]');
     }
+
+    get mapsServersID() {
+        return $('#block-14')
+    }
     
-    get viewLargerMapLink() {
+    get viewLargerMapID() {
         return $('a[aria-label="View larger map"]');
     }
     
@@ -14,12 +18,19 @@ class GCBMaps extends Base {
         await browser.execute(() => {
             window.scrollTo(0, document.body.scrollHeight / 2);
         });
-        await expect(this.mapsIframe).toBeExisting();
+        await expect(this.mapsIframeID).toBeExisting();
+    }
+
+    async scrollDownServers() {
+        await browser.execute(() => {
+            window.scrollTo(0, document.body.scrollHeight / 3);
+        });
+        await expect(this.mapsServersID).toBeExisting();
     }
     
     async viewLargerMap() {
-        await browser.switchFrame(await this.mapsIframe);
-        await this.viewLargerMapLink.click();
+        await browser.switchFrame(await this.mapsIframeID);
+        await this.viewLargerMapID.click();
         await browser.switchFrame(null);
         
     }
@@ -54,6 +65,9 @@ class GCBMaps extends Base {
         await this.verifyNewTabOpened();
         await this.switchToNewTab();
         await this.closeNewTabAndReturnToMain();
+        await this.openGCBServers();
+        await this.scrollDownServers();
+        
     }
 }
 
