@@ -45,7 +45,7 @@ class GCBMaps extends Base {
                 (await browser.getWindowHandles())[1]
             );
         };
-        await expect(browser).toHaveUrl(expect.stringContaining('google.com/maps'));
+        await expect(browser).toHaveUrl(expect.stringContaining('1155+N+Main+St,+Layton,+UT+84041'));
     }
 
     async closeNewTabAndReturnToMain() {
