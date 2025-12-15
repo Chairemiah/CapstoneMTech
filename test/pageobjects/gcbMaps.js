@@ -14,32 +14,28 @@ class GCBMaps extends Base {
         return $('a[aria-label="View larger map"]');
     }
     
+    get appleMapsID() {
+        return $('.mk-map-node-element')
+    }
+
     async scrollDown() {
-        await browser.execute(() => {
-            window.scrollTo(0, document.body.scrollHeight / 2);
-        });
+        await this.mapsIframeID.scrollIntoView();
         await expect(this.mapsIframeID).toBeExisting();
     }
 
-    async scrollDownServers() {
-        await browser.execute(() => {
-            window.scrollTo(0, document.body.scrollHeight / 3);
-        });
-        await expect(this.mapsServersID).toBeExisting();
+    async appleMapServers() {
+        await this.openGCBServers();
+        await this.appleMapsID.scrollIntoView();
+        await expect(this.appleMapsID).toBeExisting();
     }
     
     async viewLargerMap() {
         await browser.switchFrame(await this.mapsIframeID);
         await this.viewLargerMapID.click();
         await browser.switchFrame(null);
-        
-    }
-    
-    async verifyNewTabOpened() {
-        return (await browser.getWindowHandles()).length > 1;
     }
 
-    async switchToNewTab() {
+    async verifyNewTab() {
         if ((await browser.getWindowHandles()).length > 1) {
             await browser.switchToWindow(
                 (await browser.getWindowHandles())[1]
@@ -48,7 +44,7 @@ class GCBMaps extends Base {
         await expect(browser).toHaveUrl(expect.stringContaining('1155+N+Main+St,+Layton,+UT+84041'));
     }
 
-    async closeNewTabAndReturnToMain() {
+    async closeTab() {
         if ((await browser.getWindowHandles()).length > 1) {
             await browser.closeWindow();
             await browser.switchToWindow(
@@ -58,16 +54,13 @@ class GCBMaps extends Base {
         await expect(browser).toHaveUrl(expect.stringContaining('gcbcomputers.com'));
     }
 
-    async googleMaps() {
+    async allMaps() {
         await this.openGCB();
         await this.scrollDown();
         await this.viewLargerMap();
-        await this.verifyNewTabOpened();
-        await this.switchToNewTab();
-        await this.closeNewTabAndReturnToMain();
-        await this.openGCBServers();
-        await this.scrollDownServers();
-        
+        await this.verifyNewTab();
+        await this.closeTab();
+        await this.appleMapServers();
     }
 }
 
