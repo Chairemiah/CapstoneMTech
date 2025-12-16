@@ -6,7 +6,7 @@ class GCBRecentItems extends Base {
         return $$('.trending-content a[href*="gcbcomputers.com"]');
     }
 
-    async recentItems() {
+    async allRecentItems() {
         await this.openGCB();
             for (let i = 0; i < (await this.recentItemsID).length; i++) {
                 await (await this.recentItemsID)[i].click();
@@ -20,10 +20,6 @@ class GCBRecentItems extends Base {
                 await browser.back();
             }
     }
-
-
-
-
 }
 
 export default new GCBRecentItems();
