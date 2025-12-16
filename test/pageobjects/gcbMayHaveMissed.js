@@ -17,12 +17,14 @@ class GCBMayHaveMissed extends Base {
     async allMissed() {
         await this.openGCB();
             for (let i = 0; i < (await this.allMissedID).length; i++) {
+                await this.missedWidget();
                 await (await this.allMissedID)[i].click();
                 await browser.waitUntil(async () => (await browser.getUrl()).includes('gcbcomputers.com'));
                 await browser.back();
             }
         await this.openGCBServers();
             for (let i = 0; i < (await this.allMissedID).length; i++) {
+                await this.missedWidget();
                 await (await this.allMissedID)[i].click();
                 await browser.waitUntil(async () => (await browser.getUrl()).includes('servers.gcbcomputers.com/2025'));
                 await browser.back();
